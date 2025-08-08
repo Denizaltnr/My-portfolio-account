@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Deniz Altuner - Portfolio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --primary: #6366f1; --primary-dark: #4f46e5; --secondary: #22d3ee;
+      --dark: #0f172a; --dark-light: #1e293b; --light: #f8fafc; --text: #cbd5e1; --accent: #fbbf24;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: var(--text);
+      overflow-x: hidden; min-height: 100vh;
+    }
+
+    /* Navigation */
+    nav { position: fixed; top: 0; width: 100%; background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(20px); border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+      z-index: 1000; padding: 1rem 0; }
+    .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.5rem; font-weight: 700; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; cursor: pointer; text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--text); text-decoration: none; cursor: pointer; padding: .5rem 0; position: relative; transition: all .3s ease; }
+    .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%); transition: width .3s ease; }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+    /* Page Container */
+    .page { display: none; padding-top: 80px; min-height: 100vh; }
+    .page.active { display: block; }
+
+    /* Hero */
+    .hero { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; display: flex; gap: 4rem; align-items: center; min-height: calc(100vh - 80px); }
+    .hero-content { flex: 1; }
+    .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, var(--light) 0%, var(--text) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .subtitle { font-size: 1.5rem; color: var(--primary); margin-bottom: 2rem; }
+    .hero-description { font-size: 1.1rem; line-height: 1.8; margin-bottom: 3rem; }
+    .hero-buttons { display: flex; gap: 1rem; margin-bottom: 3rem; }
+    .btn { padding: 1rem 2rem; border-radius: 50px; font-weight: 600; cursor: pointer; border: none; font-size: 1rem; transition: all .3s ease; text-decoration: none; display: inline-block; }
+    .btn-primary { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: #fff; }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(99, 102, 241, .4); }
+    .btn-secondary { background: transparent; color: var(--secondary); border: 2px solid var(--secondary); }
+    .btn-secondary:hover { background: var(--secondary); color: var(--dark); }
+
+    /* Tech Stack */
+    .tech-stack { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .tech-badge { padding: .5rem 1rem; background: rgba(99, 102, 241, .1); border: 1px solid rgba(99, 102, 241, .3); border-radius: 20px; font-size: .9rem; }
+
+    /* Profile Photo */
+    .profile-section { position: relative; }
+    .profile-photo { width: 300px; height: 300px; border-radius: 50%; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      padding: 4px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;
+      box-shadow: 0 20px 40px rgba(99, 102, 241, .3); animation: profileFloat 3s ease-in-out infinite; }
+    @keyframes profileFloat { 0%,100% { transform: translateY(0)} 50% { transform: translateY(-10px)} }
+    .profile-photo-inner { width: 100%; height: 100%; border-radius: 50%; background: var(--dark-light); display: flex; align-items: center; justify-content: center; font-size: 5rem; overflow: hidden; }
+    .profile-photo-inner img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+
+    /* Sections */
+    section { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; }
+    .section-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 3rem; text-align: center;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+    /* About */
+    .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .about-text { font-size: 1.1rem; line-height: 1.8; }
+    .info-item { padding: 1rem; background: rgba(99, 102, 241, .05); border-radius: 10px; margin-bottom: 1rem; }
+
+    /* Projects */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+    .project-card { background: rgba(30, 41, 59, .5); backdrop-filter: blur(10px); border: 1px solid rgba(99, 102, 241, .2); border-radius: 20px; padding: 2rem; transition: transform .3s ease; }
+    .project-card:hover { transform: translateY(-10px); }
+    .project-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--light); }
+    .project-description { margin-bottom: 1.5rem; line-height: 1.6; }
+    .project-tech { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .project-tech span { padding: .3rem .8rem; background: rgba(34, 211, 238, .1); border: 1px solid rgba(34, 211, 238, .3); border-radius: 15px; font-size: .85rem; }
+    .project-link { display: inline-block; padding: .5rem 1rem; background: rgba(99, 102, 241, .1); border: 1px solid rgba(99, 102, 241, .3); border-radius: 10px; color: var(--primary); text-decoration: none; }
+
+    /* Skills */
+    .skills-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+    .skill-category { background: rgba(30, 41, 59, .5); backdrop-filter: blur(10px); border: 1px solid rgba(99, 102, 241, .2); border-radius: 20px; padding: 2rem; }
+    .skill-category h3 { color: var(--secondary); margin-bottom: 1.5rem; }
+    .skill-item { margin-bottom: 1.5rem; }
+    .skill-name { display: flex; justify-content: space-between; margin-bottom: .5rem; }
+    .skill-bar { height: 8px; background: rgba(99, 102, 241, .2); border-radius: 10px; overflow: hidden; }
+    .skill-progress { height: 100%; background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%); border-radius: 10px; }
+
+    /* Contact */
+    .contact-container { max-width: 600px; margin: 0 auto; }
+    .contact-form { background: rgba(30, 41, 59, .5); backdrop-filter: blur(10px); border: 1px solid rgba(99, 102, 241, .2); border-radius: 20px; padding: 2rem; }
+    .form-group { margin-bottom: 1.5rem; }
+    .form-group label { display: block; margin-bottom: .5rem; color: var(--text); }
+    .form-group input, .form-group textarea { width: 100%; padding: 1rem; background: rgba(15, 23, 42, .5); border: 1px solid rgba(99, 102, 241, .3); border-radius: 10px; color: var(--light); }
+    .contact-links { display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; }
+    .social-link { width: 50px; height: 50px; background: rgba(99, 102, 241, .1); border: 1px solid rgba(99, 102, 241, .3); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary); text-decoration: none; }
+
+    /* Footer */
+    footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(99, 102, 241, .2); }
+
+    /* Erişilebilirlik & mobil */
+    :focus-visible { outline: 2px solid var(--secondary); outline-offset: 3px; border-radius: 6px; }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+    @media (max-width: 768px) {
+      .hero { flex-direction: column; }
+      .about-content { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <meta name="description" content="AI & Prompt Engineering üzerine çalışan Deniz Altuner'in portföyü, projeler, yetkinlikler ve iletişim." />
+  <link rel="canonical" href="https://www.example.com/" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Deniz Altuner - Portfolio" />
+  <meta property="og:description" content="AI & Prompt Engineering üzerine çalışan Deniz Altuner'in portföyü, projeler, yetkinlikler ve iletişim." />
+  <meta property="og:url" content="https://www.example.com/" />
+  <meta property="og:image" content="https://www.example.com/cover.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Deniz Altuner - Portfolio" />
+  <meta name="twitter:description" content="AI & Prompt Engineering üzerine çalışan Deniz Altuner'in portföyü, projeler, yetkinlikler ve iletişim." />
+  <meta name="twitter:image" content="https://www.example.com/cover.jpg" />
+
+  <style>
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    .skip-link { position: absolute; left: -999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .skip-link:focus { position: static; width: auto; height: auto; padding: .5rem 1rem; background: #111; color: #fff; z-index: 1000; display: inline-block; }
+    header { position: sticky; top: 0; z-index: 999; }
+    section, main > * { scroll-margin-top: 84px; }
+    .nav-toggle { display: none; background: transparent; border: 1px solid currentColor; padding: .5rem .75rem; border-radius: .5rem; }
+    @media (max-width: 768px) {
+      .nav-toggle { display: inline-block; }
+      #nav-links { display: none; }
+      #nav-links.open { display: block; }
+    }
+    .form-status { margin-top: .5rem; color: #0a7f28; font-weight: 500; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Deniz Altuner",
+    "jobTitle": "AI & Prompt Engineer",
+    "url": "https://www.example.com/",
+    "image": "https://www.example.com/deniz.jpg",
+    "sameAs": [
+      "https://github.com/deniz",
+      "https://www.linkedin.com/in/deniz"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe atla</a>
+
+  <!-- Navigation -->
+  <nav aria-label="Ana navigasyon">
+    <button class="nav-toggle" aria-controls="nav-links" aria-expanded="false">Menü</button>
+    <div class="nav-container" id="nav-links">
+      <a class="logo" href="#home">DA.</a>
+      <ul class="nav-links">
+        <li><a class="nav-link" href="#home">Ana Sayfa</a></li>
+        <li><a class="nav-link" href="#about">Hakkımda</a></li>
+        <li><a class="nav-link" href="#projects">Projeler</a></li>
+        <li><a class="nav-link" href="#skills">Yetenekler</a></li>
+        <li><a class="nav-link" href="#contact">İletişim</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Home Page -->
+  <div class="page active" id="home">
+    <div class="hero">
+      <div class="hero-content">
+        <h1>Merhaba, Ben Deniz Altuner</h1>
+        <p class="subtitle">AI &amp; Prompt Engineering Uzmanı | Yazılım Geliştirici</p>
+        <p class="hero-description">
+          Bandırma On Yedi Eylül Üniversitesi'nde Yönetim Bilişim Sistemleri son sınıf öğrencisiyim.
+          Yapay zeka ve prompt mühendisliği alanlarında uzmanlaşarak, AI teknolojilerinin
+          potansiyelini açığa çıkaran yenilikçi çözümler geliştiriyorum.
+        </p>
+        <div class="hero-buttons">
+          <a class="btn btn-primary" href="#projects">🚀 Projelerimi Gör</a>
+          <a class="btn btn-secondary" href="#contact">💬 İletişime Geç</a>
+        </div>
+        <div class="tech-stack">
+          <div class="tech-badge">AI &amp; Prompt Engineering</div>
+          <div class="tech-badge">Machine Learning</div>
+          <div class="tech-badge">Python</div>
+          <div class="tech-badge">TensorFlow</div>
+          <div class="tech-badge">C# .NET</div>
+          <div class="tech-badge">TypeScript</div>
+        </div>
+      </div>
+      <div class="profile-section">
+        <div class="profile-photo">
+          <div class="profile-photo-inner">
+            <!-- YEREL JPEG KULLANIMI -->
+            <img src="209046051.jpeg" alt="Deniz Altuner" loading="lazy" decoding="async" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Page -->
+  <div class="page" id="about">
+    <section>
+      <h2 class="section-title">Hakkımda</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>
+            22 yaşındayım ve Kocaeli'nin Gebze ilçesinde yaşıyorum. Teknolojiye olan tutkum,
+            yapay zekanın sunduğu sınırsız olanaklarla birleştiğinde, kendimi bu alanda
+            derinlemesine geliştirmeye adadım. Özellikle prompt mühendisliği konusunda
+            uzmanlaşarak, AI modellerinin gerçek potansiyelini ortaya çıkarmak için çalışıyorum.
+          </p>
+          <br />
+          <p>
+            Yapay zeka teknolojilerinin sadece bir araç değil, aynı zamanda yaratıcılığı ve
+            üretkenliği artıran bir ortak olduğuna inanıyorum. Bu vizyonla, hem kendi
+            projelerimde hem de açık kaynak topluluğuna katkılarımda, AI'nın gücünü
+            herkes için erişilebilir kılmaya çalışıyorum.
+          </p>
+        </div>
+        <div>
+          <div class="info-item"><strong>🎓 Eğitim:</strong> Bandırma On Yedi Eylül Üniversitesi - YBS</div>
+          <div class="info-item"><strong>📍 Lokasyon:</strong> Kocaeli, Gebze</div>
+          <div class="info-item"><strong>💼 Odak:</strong> AI, Prompt Engineering, Machine Learning</div>
+          <div class="info-item"><strong>📧 E-posta:</strong> ben_deniz_melisa@outlook.com</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Projects Page -->
+  <div class="page" id="projects">
+    <section>
+      <h2 class="section-title">Projelerim</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <h3 class="project-title">Brain Tumor Classification MRI</h3>
+          <p class="project-description">
+            Derin öğrenme ve yapay zeka teknikleriyle MRI görüntülerinden beyin tümörlerini
+            otomatik tespit eden sistem. SVM mimarisi ile %94.60+ doğruluk oranına ulaşıldı.
+          </p>
+          <div class="project-tech">
+            <span>Python</span><span>TensorFlow</span><span>CNN</span><span>Medical AI</span>
+          </div>
+          <a class="project-link" href="https://github.com/Denizaltnr/brain-tumor-classification-mri" target="_blank" rel="noopener noreferrer">GitHub →</a>
+        </div>
+        <div class="project-card">
+          <h3 class="project-title">AI Prompt Engineering Tools</h3>
+          <p class="project-description">ChatGPT, Claude ve diğer LLM'ler için optimize edilmiş prompt şablonları ve otomatik prompt geliştirme araçları.</p>
+          <div class="project-tech">
+            <span>Prompt Engineering</span><span>Python</span><span>OpenAI API</span>
+          </div>
+          <a class="project-link" href="#">Geliştiriliyor →</a>
+        </div>
+        <div class="project-card">
+          <h3 class="project-title">Multipass AI Backend</h3>
+          <p class="project-description">AI Agent destekli sanal makine oluşturma ve yönetim sistemi. Otomatik VM orchestration ve yapay zeka entegrasyonu.</p>
+          <div class="project-tech">
+            <span>Python</span><span>AI Agent</span><span>REST API</span>
+          </div>
+          <a class="project-link" href="https://github.com/Denizaltnr/multipass_backend" target="_blank" rel="noopener noreferrer">GitHub →</a>
+        </div>
+        <div class="project-card">
+          <h3 class="project-title">Multipass Frontend</h3>
+          <p class="project-description">Modern ve kullanıcı dostu VM yönetim arayüzü. Gerçek zamanlı durum takibi ve responsive tasarım.</p>
+          <div class="project-tech">
+            <span>TypeScript</span><span>React</span><span>UI/UX</span>
+          </div>
+          <a class="project-link" href="https://github.com/Denizaltnr/multipass_frontend" target="_blank" rel="noopener noreferrer">GitHub →</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Skills Page -->
+  <div class="page" id="skills">
+    <section>
+      <h2 class="section-title">Yeteneklerim</h2>
+      <div class="skills-container">
+        <div class="skill-category">
+          <h3>AI &amp; Machine Learning</h3>
+          <div class="skill-item"><div class="skill-name"><span>Prompt Engineering</span><span>90%</span></div><div class="skill-bar"><div class="skill-progress" style="width:90%"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>Machine Learning</span><span>80%</span></div><div class="skill-bar"><div class="skill-progress" style="width:80%"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>TensorFlow &amp; Keras</span><span>75%</span></div><div class="skill-bar"><div class="skill-progress" style="width:75%"></div></div></div>
+        </div>
+        <div class="skill-category">
+          <h3>Programming</h3>
+          <div class="skill-item"><div class="skill-name"><span>Python</span><span>85%</span></div><div class="skill-bar"><div class="skill-progress" style="width:85%"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>C# .NET</span><span>80%</span></div><div class="skill-bar"><div class="skill-progress" style="width:80%"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>TypeScript</span><span>70%</span></div><div class="skill-bar"><div class="skill-progress" style="width:70%"></div></div></div>
+        </div>
+        <div class="skill-category">
+          <h3>Tools &amp; Technologies</h3>
+          <div class="skill-item"><div class="skill-name"><span>Git &amp; GitHub</span><span>90%</span></div><div class="skill-bar"><div class="skill-progress" style="width:90%"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>SQL &amp; Database</span><span>75%</span></div><div class="skill-bar"><div class="skill-progress" style="width:75%"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>React</span><span>70%</span></div><div class="skill-bar"><div class="skill-progress" style="width:70%"></div></div></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Contact Page -->
+  <div class="page" id="contact">
+    <section>
+      <h2 class="section-title">İletişim</h2>
+      <div class="contact-container">
+        <form class="contact-form" name="contact" data-netlify="true" onsubmit="handleSubmit(event)">
+          <input type="hidden" name="form-name" value="contact" />
+          <div class="form-group"><label for="name">Adınız</label><input id="name" name="name" type="text" required></div>
+          <div class="form-group"><label for="email">E-posta</label><input id="email" name="email" type="email" required></div>
+          <div class="form-group"><label for="subject">Konu</label><input id="subject" name="subject" type="text" required></div>
+          <div class="form-group"><label for="message">Mesajınız</label><textarea id="message" name="message" rows="5" required></textarea></div>
+          <button type="submit" class="btn btn-primary" style="width:100%">📧 Mesaj Gönder</button>
+          <p id="form-status" class="form-status" role="status" tabindex="-1"></p>
+        </form>
+        <div class="contact-links">
+          <a class="social-link" href="https://github.com/Denizaltnr" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub">
+            <svg aria-hidden="true" fill="currentColor" viewBox="0 0 24 24" width="24" height="24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+          <a class="social-link" href="https://www.linkedin.com/in/deniz-altuner-a58612180" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn">
+            <svg aria-hidden="true" fill="currentColor" viewBox="0 0 24 24" width="24" height="24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          </a>
+          <a class="social-link" href="mailto:ben_deniz_melisa@outlook.com" title="E-posta" aria-label="E-posta">
+            <svg aria-hidden="true" fill="currentColor" viewBox="0 0 24 24" width="24" height="24"><path d="M12 12.713l-11.985-9.713h23.971l-11.986 9.713zm-5.425-1.822l-6.575-5.329v12.501l6.575-7.172zm10.85 0l6.575 7.172v-12.501l-6.575 5.329zm-1.557 1.261l-3.868 3.135-3.868-3.135-8.11 8.848h23.956l-8.11-8.848z"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Deniz Altuner. Tüm hakları saklıdır.</p>
+    <p style="margin-top:1rem;opacity:.7;">Sitenin tasarım ve kod aşaması tamamen bana aittir.</p>
+  </footer>
+
+  <main id="main"></main>
+
+  <script>
+    // Hash'e göre sayfa aktifliği
+    function setActivePageFromHash() {
+      const id = (location.hash || '#home').slice(1);
+      document.querySelectorAll('.page').forEach(p => p.classList.toggle('active', p.id === id));
+      document.querySelectorAll('.nav-link').forEach(link => {
+        const target = (link.getAttribute('href') || '').replace('#','');
+        const isActive = target === id;
+        link.classList.toggle('active', isActive);
+        if (isActive) link.setAttribute('aria-current', 'page'); else link.removeAttribute('aria-current');
+      });
+    }
+    window.addEventListener('hashchange', setActivePageFromHash);
+    document.addEventListener('DOMContentLoaded', function(){
+      setActivePageFromHash();
+    });
+
+    // Mobil menü toggle
+    (function(){
+      var btn = document.querySelector('.nav-toggle');
+      var links = document.getElementById('nav-links');
+      if(btn && links){
+        btn.addEventListener('click', function(){
+          var open = links.classList.toggle('open');
+          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+      }
+      var form = document.querySelector('form[data-netlify="true"]');
+      var status = document.getElementById('form-status');
+      if(form && status){
+        form.addEventListener('submit', function(){
+          setTimeout(function(){ status.textContent = 'Teşekkürler! Mesajınız alındı.'; status.focus(); }, 600);
+        });
+      }
+    })();
+
+    // Mailto fallback (Netlify yoksa)
+    function handleSubmit(event){
+      event.preventDefault();
+      const formData = new FormData(event.target);
+      const data = Object.fromEntries(formData);
+      const mailtoLink = 'mailto:ben_deniz_melisa@outlook.com?subject=' +
+        encodeURIComponent(data.subject) +
+        '&body=' + encodeURIComponent('Ad: ' + data.name + '\nE-posta: ' + data.email + '\n\nMesaj:\n' + data.message);
+      window.location.href = mailtoLink;
+      event.target.reset();
+      alert('Mesajınız için teşekkürler! En kısa sürede size dönüş yapacağım.');
+    }
+  </script>
+</body>
+</html>
