@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Deniz Altuner | Neural Architect</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#283044",
+                        "on-primary-container": "#0d0096",
+                        "surface-dim": "#0b1326",
+                        "surface-container-lowest": "#060e20",
+                        "surface-container-low": "#131b2e",
+                        "on-background": "#dae2fd",
+                        "on-primary": "#1000a9",
+                        "secondary-container": "#00cbe6",
+                        "secondary-fixed-dim": "#2fd9f4",
+                        "tertiary": "#edb1ff",
+                        "on-secondary-fixed-variant": "#004e5a",
+                        "on-secondary-container": "#00515d",
+                        "on-primary-fixed": "#07006c",
+                        "on-secondary": "#00363e",
+                        "secondary": "#5de6ff",
+                        "surface-container": "#171f33",
+                        "outline-variant": "#464554",
+                        "on-tertiary-fixed-variant": "#6e208c",
+                        "surface-variant": "#2d3449",
+                        "surface-bright": "#31394d",
+                        "primary-container": "#8083ff",
+                        "on-error": "#690005",
+                        "on-tertiary": "#520070",
+                        "primary-fixed": "#e1e0ff",
+                        "on-surface-variant": "#c7c4d7",
+                        "on-tertiary-fixed": "#320046",
+                        "inverse-primary": "#494bd6",
+                        "surface-tint": "#c0c1ff",
+                        "tertiary-fixed-dim": "#edb1ff",
+                        "tertiary-container": "#c070de",
+                        "tertiary-fixed": "#f9d8ff",
+                        "inverse-surface": "#dae2fd",
+                        "surface-container-highest": "#2d3449",
+                        "surface-container-high": "#222a3d",
+                        "secondary-fixed": "#a2eeff",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "error-container": "#93000a",
+                        "on-tertiary-container": "#480063",
+                        "surface": "#0b1326",
+                        "on-surface": "#dae2fd",
+                        "error": "#ffb4ab",
+                        "primary": "#c0c1ff",
+                        "outline": "#908fa0",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-fixed": "#001f25",
+                        "background": "#0b1326",
+                        "on-primary-fixed-variant": "#2f2ebe"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { background-color: #0b1326; font-family: 'Inter', sans-serif; }
+        .glass-panel {
+            background: rgba(49, 57, 77, 0.2);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(70, 69, 84, 0.15);
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #00D2FF 0%, #9D50BB 100%);
+        }
+        .text-glow {
+            text-shadow: 0 0 20px rgba(93, 230, 255, 0.3);
+        }
+        .terminal-cursor {
+            border-right: 2px solid #5de6ff;
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink { 50% { border-color: transparent; } }
+    </style>
+</head>
+<body class="text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-slate-950/40 backdrop-blur-xl border-b border-indigo-500/10 shadow-[0_0_40px_-15px_rgba(47,46,190,0.08)]">
+<div class="flex justify-between items-center max-w-7xl mx-auto px-8 py-4">
+<div class="text-xl font-bold tracking-tighter text-indigo-100 hover:text-cyan-400 transition-colors">
+                Neural Architect
+            </div>
+<div class="hidden md:flex items-center gap-8 font-sans text-sm tracking-tight uppercase font-medium">
+<a class="text-indigo-300 border-b-2 border-cyan-400 pb-1" href="#">Home</a>
+<a class="text-slate-400 hover:text-indigo-200 transition-colors" href="#">About</a>
+<a class="text-slate-400 hover:text-indigo-200 transition-colors" href="#">Projects</a>
+<a class="text-slate-400 hover:text-indigo-200 transition-colors" href="#">Skills</a>
+<a class="text-slate-400 hover:text-indigo-200 transition-colors" href="#">Contact</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-indigo-400 hover:bg-indigo-500/5 p-2 rounded-lg transition-all" data-icon="terminal">terminal</button>
+<button class="bg-gradient-to-r from-[#00D2FF] to-[#9D50BB] text-on-primary-fixed px-6 py-2 rounded-xl text-sm font-bold tracking-tight hover:scale-105 active:scale-95 transition-all duration-300">
+                    Hire Me
+                </button>
+</div>
+</div>
+</nav>
+<main class="relative pt-24 pb-12">
+<!-- Hero Section -->
+<section class="max-w-7xl mx-auto px-8 min-h-[819px] flex flex-col md:flex-row items-center gap-12 mb-32">
+<div class="flex-1 space-y-8">
+<div class="inline-flex items-center gap-2 px-3 py-1 glass-panel rounded-full">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="text-xs font-label uppercase tracking-widest text-secondary-fixed-dim">System Status: Active</span>
+</div>
+<h1 class="text-5xl md:text-7xl font-bold tracking-tighter leading-tight">
+                    Merhaba, Ben <br/>
+<span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Deniz Altuner.</span>
+</h1>
+<p class="text-xl md:text-2xl text-on-surface-variant font-light max-w-2xl leading-relaxed">
+                    AI &amp; Prompt Engineering Uzmanı | Yazılım Geliştirici
+                </p>
+<div class="flex items-center gap-4 font-mono text-sm text-secondary-fixed-dim glass-panel p-4 rounded-xl border-l-4 border-secondary">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+<span class="terminal-cursor">Analyzing potential...</span>
+</div>
+<div class="flex flex-wrap gap-4 pt-4">
+<button class="hero-gradient text-on-primary-fixed px-8 py-4 rounded-xl font-bold flex items-center gap-2 hover:shadow-[0_0_30px_-5px_rgba(93,230,255,0.4)] transition-all">
+                        Projeleri İncele
+                        <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<button class="glass-panel text-on-surface px-8 py-4 rounded-xl font-bold border border-outline-variant/20 hover:bg-surface-bright/40 transition-all">
+                        İletişime Geç
+                    </button>
+</div>
+</div>
+<div class="relative flex-shrink-0 group">
+<!-- Circular Profile Frame -->
+<div class="relative w-64 h-64 md:w-96 md:h-96 rounded-full p-1.5 bg-gradient-to-tr from-secondary via-transparent to-tertiary animate-[spin_8s_linear_infinite]">
+<div class="w-full h-full rounded-full overflow-hidden border-4 border-surface bg-surface-container">
+<img alt="Deniz Altuner" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Professional portrait of a young male software engineer in a modern setting with high-tech atmospheric lighting and deep indigo tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbdPmtlTAEOZBNiJqRKt6c5LqXLzpjV12ckrmN_ebjqf_Xa_WWk4dnsbKi_-fyOGZ5qR-kUa4DxgB5xs6PMq4q-ud7KziL0oBOZ_OTLrPz3SDy3VKDrZ1XDuV7EFGKp3MPeC9wLckQonzJcL_4GysJQDPLXFmZYkoVg8-NnW7onuVOxXiVjI7GMIoIupTlXOD00U3UiJcPwsNGOjdyV_6_S8K9vCzOLH_TzRkWpwQ__asJ8GpQmHaHXlmHrglwyUpbtZz6HE18YQ"/>
+</div>
+</div>
+<!-- Ambient Glow -->
+<div class="absolute -inset-4 bg-primary/20 blur-3xl -z-10 rounded-full group-hover:bg-primary/30 transition-all"></div>
+<div class="absolute -bottom-6 -right-6 glass-panel p-6 rounded-2xl border border-outline-variant/15 flex flex-col gap-1 items-center">
+<span class="text-3xl font-bold text-secondary">5+</span>
+<span class="text-[10px] uppercase tracking-tighter text-on-surface-variant">Yıl Deneyim</span>
+</div>
+</div>
+</section>
+<!-- About Section -->
+<section class="bg-surface-container-low py-24 mb-32 relative overflow-hidden">
+<div class="max-w-7xl mx-auto px-8 relative z-10 flex flex-col md:flex-row gap-16">
+<div class="md:w-1/3">
+<h2 class="text-label-md uppercase tracking-[0.2em] text-secondary-fixed-dim mb-4">Hakkımda</h2>
+<h3 class="text-4xl font-bold tracking-tight text-primary-fixed mb-6">AI ve Yaratıcılık</h3>
+<div class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-secondary" data-icon="location_on">location_on</span>
+<span class="font-medium">Kocaeli / Gebze, Türkiye</span>
+</div>
+</div>
+<div class="md:w-2/3 space-y-6 text-lg text-on-surface-variant leading-relaxed">
+<p>
+                        Teknolojinin sadece bir araç değil, yaratıcılığın bir uzantısı olduğuna inanıyorum. Modern yazılım geliştirme süreçlerini yapay zeka ile optimize ederek, karmaşık problemleri zarif ve ölçeklenebilir çözümlere dönüştürüyorum.
+                    </p>
+<p>
+                        Prompt Engineering disiplinini yazılım mimarisiyle harmanlayarak, LLM tabanlı uygulamalar ve otonom sistemler üzerine odaklanıyorum. Gebze teknik ekosisteminin merkezinde, geleceğin dijital dünyasını bugünden inşa ediyorum.
+                    </p>
+</div>
+</div>
+<!-- Decorative Background Map Element -->
+<div class="absolute right-0 top-0 opacity-10 pointer-events-none">
+<img alt="Location Map" class="w-[600px] grayscale invert" data-alt="Stylized topographic map of Kocaeli Gebze region with abstract digital grid overlays" data-location="Gebze" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALpFDRwXuwxleLLnw9T--qzw2HgMlxFhi9UIvjhNvqg6FvkaMG30hfC9HXNdFwLXdBxymkUIB3oTlXACeJY4lEV7lF51xcw3RVyu_91Jb1WIvMdZVZPgh6zf0_CQN3FKd6REoBuaVz1S3xvwoUTQy4EMNFIAUViZL78sqGVAo5ivuQ4xHmS0f_bS2phSsNblDfO32gl0orDvDDROJUtfr0GSIGab6DLMw6ul8VJOblsIh9qTkQ_BuH6M7rYemLX-RNT1lYv3y8XQ"/>
+</div>
+</section>
+<!-- Projects Bento Grid -->
+<section class="max-w-7xl mx-auto px-8 mb-32">
+<div class="flex justify-between items-end mb-12">
+<div>
+<h2 class="text-label-sm uppercase tracking-[0.3em] text-primary mb-2">Seçili Projeler</h2>
+<p class="text-3xl font-bold tracking-tight">Mühendislik Harikaları</p>
+</div>
+<button class="text-secondary text-sm font-bold flex items-center gap-2 hover:translate-x-2 transition-transform">
+                    Tümünü Gör <span class="material-symbols-outlined" data-icon="trending_flat">trending_flat</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Project 1 (Large) -->
+<div class="md:col-span-2 group relative glass-panel rounded-3xl overflow-hidden p-8 flex flex-col justify-end min-h-[450px] border border-outline-variant/10 hover:border-secondary/40 transition-all">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-surface-dim/40 to-transparent z-10"></div>
+<div class="absolute inset-0 z-0">
+<img alt="AI Agent Project" class="w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700" data-alt="Futuristic neural network visualization with glowing fiber optic data streams in deep blue and cyan" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzUI-t2JJ1YrTvF_PsVj-fLnqURsxxIkWkOLAafX6wPfnF8v8eAB2s0XIQspkPGsK0rNmmztsfnYWuJtJZBebY-9AknYJVxQDB2iLquDoyCcI1VlB_InuTObQAkajYZ4GfSA0yJuuzlcnXVe1BAbdQKibNKAyYZKDlleh-qtV_xxgYhU2ZfS2SDqCaavYI0lTwqpOz4l_6p35ldOjxa6jDahtMHUajYbjQYaeeSSiz48J5tng8rwMjHn_ld5uBpuS6O6dlUwu1CA"/>
+</div>
+<div class="relative z-20 space-y-4">
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-surface-variant rounded-full text-[10px] font-bold uppercase text-primary-fixed-dim">Deep Learning</span>
+<span class="px-3 py-1 bg-surface-variant rounded-full text-[10px] font-bold uppercase text-primary-fixed-dim">Python</span>
+</div>
+<h4 class="text-3xl font-bold tracking-tight">Otonom Karar Sistemleri</h4>
+<p class="text-on-surface-variant max-w-md">Çok katmanlı LLM mimarisi ile kurum içi veri analizi ve otomatik raporlama asistanı.</p>
+<div class="pt-4 flex gap-4">
+<span class="material-symbols-outlined text-secondary cursor-pointer" data-icon="open_in_new">open_in_new</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer" data-icon="code">code</span>
+</div>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="group glass-panel rounded-3xl overflow-hidden p-8 flex flex-col justify-between border border-outline-variant/10 hover:border-tertiary/40 transition-all bg-gradient-to-br from-surface-container to-surface-container-lowest">
+<div class="space-y-4">
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-surface-variant rounded-full text-[10px] font-bold uppercase text-tertiary">Prompt Eng.</span>
+</div>
+<h4 class="text-2xl font-bold tracking-tight">Creative AI Flux</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Görsel üretim süreçleri için optimize edilmiş dinamik prompt kütüphanesi ve API entegrasyonu.</p>
+</div>
+<div class="mt-8 rounded-2xl overflow-hidden h-40 bg-slate-900 border border-outline-variant/20">
+<img alt="UI Design" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Abstract colorful flowing 3D ribbons with metallic sheen on dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXkVSnQf8shBMGHt95vNKltYer_vhmrE0NTfExQ9KSqjJLY4OpPzRk87WWErJS6rFHhhKMKQWTM1St3x5WscPLHCclGNh_T9C496aFyc4hIIh96H-5Zinh1PmSYh9gFM7DvFEnjMwLBu2OvqQ4XxnYkI77N5gMv-a6kmeIRNg1OG8LHPzfmE8B9q94a7Rj04MWB1l5ykB2jmHlpWV9ibKorf3CRWEK8fxuvpQTBHl0UXj5To5RcBhCxsWMC76JBdVGCFea7UJ6QA"/>
+</div>
+</div>
+<!-- Project 3 -->
+<div class="group glass-panel rounded-3xl overflow-hidden p-8 flex flex-col justify-between border border-outline-variant/10 hover:border-primary/40 transition-all">
+<div class="h-12 w-12 bg-primary-container/20 rounded-xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary" data-icon="robot_2">robot_2</span>
+</div>
+<div class="space-y-2">
+<h4 class="text-xl font-bold tracking-tight">Neural Chat Arch</h4>
+<p class="text-sm text-on-surface-variant">Real-time WebSocket tabanlı AI sohbet arayüzü ve vektör veritabanı optimizasyonu.</p>
+</div>
+<div class="mt-6 flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-indigo-500"></div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-cyan-500"></div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-purple-500"></div>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant">LIVE VIEW</span>
+</div>
+</div>
+<!-- Project 4 (Wide) -->
+<div class="md:col-span-2 group glass-panel rounded-3xl overflow-hidden p-1 flex flex-col md:flex-row border border-outline-variant/10 hover:border-secondary/40 transition-all">
+<div class="md:w-1/2 p-8 flex flex-col justify-center gap-4">
+<span class="px-3 py-1 bg-surface-variant rounded-full text-[10px] font-bold uppercase text-secondary w-fit">React &amp; AI</span>
+<h4 class="text-2xl font-bold tracking-tight">Semantic Code Search</h4>
+<p class="text-sm text-on-surface-variant">Büyük kod depolarında doğal dil ile arama yapmayı sağlayan akıllı indeksleme sistemi.</p>
+<button class="mt-4 text-xs font-bold uppercase tracking-widest text-primary flex items-center gap-2 group-hover:gap-4 transition-all">
+                            Case Study <span class="material-symbols-outlined text-sm" data-icon="east">east</span>
+</button>
+</div>
+<div class="md:w-1/2 h-64 md:h-auto overflow-hidden rounded-2xl m-1">
+<img alt="Coding" class="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 transition-all duration-700" data-alt="Close up shot of dark IDE code editor with syntax highlighting in electric blue and pink neon colors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUTXl3KZlaK9nfPu4V7HOFBeYMRpAdjZdNux9Kq9Z9eF6kMfTsPmaeW0ZI2hi1prRjK7rZxVrLHB3Pzm6W_9o-DuiknKrEO8tG7np5bRTLSFReonPpb16nTu8cuXgk3z6m6M1PBh1OHGnHN6qlRu6euVGc6zkT0bV3eEAL1bEaGHQ8qTYxQ28nGSO4DHKJqib3dx6Wb2uzyXng524Zq1xfdVAp7OOhZ155hhG99vwQRF4PECVaDtztC2pyFgwRhDUK9aJc-XCm0Q"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Skills Section -->
+<section class="max-w-7xl mx-auto px-8 mb-32">
+<div class="text-center mb-16">
+<h2 class="text-label-sm uppercase tracking-[0.3em] text-tertiary mb-2">Yetenek Seti</h2>
+<h3 class="text-4xl font-bold tracking-tight">Core Stack</h3>
+</div>
+<div class="flex flex-wrap justify-center gap-4 md:gap-8">
+<!-- Skill Cluster -->
+<div class="group flex flex-col items-center gap-4">
+<div class="w-20 h-20 rounded-2xl glass-panel flex items-center justify-center border border-outline-variant/10 group-hover:border-secondary group-hover:shadow-[0_0_20px_rgba(93,230,255,0.2)] transition-all duration-500">
+<span class="material-symbols-outlined text-4xl text-secondary" data-icon="terminal">terminal</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Python</span>
+</div>
+<div class="group flex flex-col items-center gap-4">
+<div class="w-20 h-20 rounded-2xl glass-panel flex items-center justify-center border border-outline-variant/10 group-hover:border-primary group-hover:shadow-[0_0_20px_rgba(192,193,255,0.2)] transition-all duration-500">
+<span class="material-symbols-outlined text-4xl text-primary" data-icon="neurology">neurology</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">TensorFlow</span>
+</div>
+<div class="group flex flex-col items-center gap-4">
+<div class="w-20 h-20 rounded-2xl glass-panel flex items-center justify-center border border-outline-variant/10 group-hover:border-tertiary group-hover:shadow-[0_0_20px_rgba(237,177,255,0.2)] transition-all duration-500">
+<span class="material-symbols-outlined text-4xl text-tertiary" data-icon="data_object">data_object</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">React</span>
+</div>
+<div class="group flex flex-col items-center gap-4">
+<div class="w-20 h-20 rounded-2xl glass-panel flex items-center justify-center border border-outline-variant/10 group-hover:border-secondary-container group-hover:shadow-[0_0_20px_rgba(0,203,230,0.2)] transition-all duration-500">
+<span class="material-symbols-outlined text-4xl text-secondary-container" data-icon="database">database</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">PostgreSQL</span>
+</div>
+<div class="group flex flex-col items-center gap-4">
+<div class="w-20 h-20 rounded-2xl glass-panel flex items-center justify-center border border-outline-variant/10 group-hover:border-on-primary-container group-hover:shadow-[0_0_20px_rgba(13,0,150,0.2)] transition-all duration-500">
+<span class="material-symbols-outlined text-4xl text-primary-container" data-icon="cloud">cloud</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Azure AI</span>
+</div>
+<div class="group flex flex-col items-center gap-4">
+<div class="w-20 h-20 rounded-2xl glass-panel flex items-center justify-center border border-outline-variant/10 group-hover:border-secondary group-hover:shadow-[0_0_20px_rgba(93,230,255,0.2)] transition-all duration-500">
+<span class="material-symbols-outlined text-4xl text-secondary" data-icon="token">token</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Prompting</span>
+</div>
+</div>
+<!-- Loader Simulation -->
+<div class="mt-20 max-w-xl mx-auto space-y-2">
+<div class="flex justify-between text-[10px] uppercase tracking-widest text-secondary-fixed-dim">
+<span>Processing Capabilities</span>
+<span>98% Synchronized</span>
+</div>
+<div class="h-1 w-full bg-surface-variant rounded-full overflow-hidden relative">
+<div class="absolute inset-0 bg-gradient-to-r from-secondary to-tertiary w-4/5 rounded-full"></div>
+<div class="absolute h-full w-20 bg-white/20 blur-sm animate-[pulse_2s_infinite]"></div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-950 w-full py-12 px-8 border-t border-indigo-500/5">
+<div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto gap-6">
+<div class="text-lg font-bold text-slate-200">Neural Architect</div>
+<div class="flex gap-8 font-sans text-xs uppercase tracking-[0.1em] text-slate-500">
+<a class="hover:text-indigo-300 transition-colors" href="#">GitHub</a>
+<a class="hover:text-indigo-300 transition-colors" href="#">LinkedIn</a>
+<a class="hover:text-indigo-300 transition-colors" href="#">Twitter</a>
+<a class="hover:text-indigo-300 transition-colors" href="#">ResearchGate</a>
+</div>
+<p class="font-sans text-xs uppercase tracking-[0.1em] text-slate-500">
+                © 2024 Neural Architect. Built for the synthetic era.
+            </p>
+</div>
+</footer>
+</body></html>

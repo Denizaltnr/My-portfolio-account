@@ -1,436 +1,607 @@
-<!doctype html>
-<html lang="tr">
+<!DOCTYPE html>
+<html class="dark" lang="tr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Deniz Altuner - Portfolio</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --primary: #6366f1; --primary-dark: #4f46e5; --secondary: #22d3ee;
-      --dark: #0f172a; --dark-light: #1e293b; --light: #f8fafc; --text: #cbd5e1; --accent: #fbbf24;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Deniz Altuner | Deniz A.</title>
+<meta name="description" content="AI & Prompt Engineering üzerine çalışan Deniz Altuner'in portföyü, projeler, yetkinlikler ve iletişim." />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Deniz Altuner | Deniz A." />
+<meta property="og:description" content="AI & Prompt Engineering üzerine çalışan Deniz Altuner'in portföyü." />
+<link rel="icon" href="/favicon.ico" />
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "inverse-on-surface": "#283044",
+                    "on-primary-container": "#0d0096",
+                    "surface-dim": "#0b1326",
+                    "surface-container-lowest": "#060e20",
+                    "surface-container-low": "#131b2e",
+                    "on-background": "#dae2fd",
+                    "on-primary": "#1000a9",
+                    "secondary-container": "#00cbe6",
+                    "secondary-fixed-dim": "#2fd9f4",
+                    "tertiary": "#edb1ff",
+                    "on-secondary-fixed-variant": "#004e5a",
+                    "on-secondary-container": "#00515d",
+                    "on-primary-fixed": "#07006c",
+                    "on-secondary": "#00363e",
+                    "secondary": "#5de6ff",
+                    "surface-container": "#171f33",
+                    "outline-variant": "#464554",
+                    "on-tertiary-fixed-variant": "#6e208c",
+                    "surface-variant": "#2d3449",
+                    "surface-bright": "#31394d",
+                    "primary-container": "#8083ff",
+                    "on-error": "#690005",
+                    "on-tertiary": "#520070",
+                    "primary-fixed": "#e1e0ff",
+                    "on-surface-variant": "#c7c4d7",
+                    "on-tertiary-fixed": "#320046",
+                    "inverse-primary": "#494bd6",
+                    "surface-tint": "#c0c1ff",
+                    "tertiary-fixed-dim": "#edb1ff",
+                    "tertiary-container": "#c070de",
+                    "tertiary-fixed": "#f9d8ff",
+                    "inverse-surface": "#dae2fd",
+                    "surface-container-highest": "#2d3449",
+                    "surface-container-high": "#222a3d",
+                    "secondary-fixed": "#a2eeff",
+                    "primary-fixed-dim": "#c0c1ff",
+                    "error-container": "#93000a",
+                    "on-tertiary-container": "#480063",
+                    "surface": "#0b1326",
+                    "on-surface": "#dae2fd",
+                    "error": "#ffb4ab",
+                    "primary": "#c0c1ff",
+                    "outline": "#908fa0",
+                    "on-error-container": "#ffdad6",
+                    "on-secondary-fixed": "#001f25",
+                    "background": "#0b1326",
+                    "on-primary-fixed-variant": "#2f2ebe"
+                },
+                borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+                fontFamily: { headline: ["Inter"], body: ["Inter"], label: ["Inter"] }
+            },
+        },
     }
-
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-      color: var(--text);
-      overflow-x: hidden; min-height: 100vh;
-    }
-
-    /* Navigation */
-    nav { position: fixed; top: 0; width: 100%; background: rgba(15, 23, 42, 0.9);
-      backdrop-filter: blur(20px); border-bottom: 1px solid rgba(99, 102, 241, 0.2);
-      z-index: 1000; padding: 1rem 0; }
-    .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-size: 1.5rem; font-weight: 700; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; cursor: pointer; text-decoration: none; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { color: var(--text); text-decoration: none; cursor: pointer; padding: .5rem 0; position: relative; transition: all .3s ease; }
-    .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
-      background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%); transition: width .3s ease; }
-    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
-
-    /* Page Container */
-    .page { display: none; padding-top: 80px; min-height: 100vh; }
-    .page.active { display: block; }
-
-    /* Hero */
-    .hero { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; display: flex; gap: 4rem; align-items: center; min-height: calc(100vh - 80px); }
-    .hero-content { flex: 1; }
-    .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, var(--light) 0%, var(--text) 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .subtitle { font-size: 1.5rem; color: var(--primary); margin-bottom: 2rem; }
-    .hero-description { font-size: 1.1rem; line-height: 1.8; margin-bottom: 3rem; }
-    .hero-buttons { display: flex; gap: 1rem; margin-bottom: 3rem; }
-    .btn { padding: 1rem 2rem; border-radius: 50px; font-weight: 600; cursor: pointer; border: none; font-size: 1rem; transition: all .3s ease; text-decoration: none; display: inline-block; }
-    .btn-primary { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: #fff; }
-    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(99, 102, 241, .4); }
-    .btn-secondary { background: transparent; color: var(--secondary); border: 2px solid var(--secondary); }
-    .btn-secondary:hover { background: var(--secondary); color: var(--dark); }
-
-    /* Tech Stack */
-    .tech-stack { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .tech-badge { padding: .5rem 1rem; background: rgba(99, 102, 241, .1); border: 1px solid rgba(99, 102, 241, .3); border-radius: 20px; font-size: .9rem; }
-
-    /* Profile Photo */
-    .profile-section { position: relative; }
-    .profile-photo { width: 300px; height: 300px; border-radius: 50%; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      padding: 4px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;
-      box-shadow: 0 20px 40px rgba(99, 102, 241, .3); animation: profileFloat 3s ease-in-out infinite; }
-    @keyframes profileFloat { 0%,100% { transform: translateY(0)} 50% { transform: translateY(-10px)} }
-    .profile-photo-inner { width: 100%; height: 100%; border-radius: 50%; background: var(--dark-light); display: flex; align-items: center; justify-content: center; font-size: 5rem; overflow: hidden; }
-    .profile-photo-inner img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-
-    /* Sections */
-    section { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; }
-    .section-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 3rem; text-align: center;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
-    /* About */
-    .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
-    .about-text { font-size: 1.1rem; line-height: 1.8; }
-    .info-item { padding: 1rem; background: rgba(99, 102, 241, .05); border-radius: 10px; margin-bottom: 1rem; }
-
-    /* Projects */
-    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
-    .project-card { background: rgba(30, 41, 59, .5); backdrop-filter: blur(10px); border: 1px solid rgba(99, 102, 241, .2); border-radius: 20px; padding: 2rem; transition: transform .3s ease; }
-    .project-card:hover { transform: translateY(-10px); }
-    .project-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--light); }
-    .project-description { margin-bottom: 1.5rem; line-height: 1.6; }
-    .project-tech { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
-    .project-tech span { padding: .3rem .8rem; background: rgba(34, 211, 238, .1); border: 1px solid rgba(34, 211, 238, .3); border-radius: 15px; font-size: .85rem; }
-    .project-link { display: inline-block; padding: .5rem 1rem; background: rgba(99, 102, 241, .1); border: 1px solid rgba(99, 102, 241, .3); border-radius: 10px; color: var(--primary); text-decoration: none; }
-
-    /* Skills */
-    .skills-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-    .skill-category { background: rgba(30, 41, 59, .5); backdrop-filter: blur(10px); border: 1px solid rgba(99, 102, 241, .2); border-radius: 20px; padding: 2rem; }
-    .skill-category h3 { color: var(--secondary); margin-bottom: 1.5rem; }
-    .skill-item { margin-bottom: 1.5rem; }
-    .skill-name { display: flex; justify-content: space-between; margin-bottom: .5rem; }
-    .skill-bar { height: 8px; background: rgba(99, 102, 241, .2); border-radius: 10px; overflow: hidden; }
-    .skill-progress { height: 100%; background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%); border-radius: 10px; }
-
-    /* Contact */
-    .contact-container { max-width: 600px; margin: 0 auto; }
-    .contact-form { background: rgba(30, 41, 59, .5); backdrop-filter: blur(10px); border: 1px solid rgba(99, 102, 241, .2); border-radius: 20px; padding: 2rem; }
-    .form-group { margin-bottom: 1.5rem; }
-    .form-group label { display: block; margin-bottom: .5rem; color: var(--text); }
-    .form-group input, .form-group textarea { width: 100%; padding: 1rem; background: rgba(15, 23, 42, .5); border: 1px solid rgba(99, 102, 241, .3); border-radius: 10px; color: var(--light); }
-    .contact-links { display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; }
-    .social-link { width: 50px; height: 50px; background: rgba(99, 102, 241, .1); border: 1px solid rgba(99, 102, 241, .3); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary); text-decoration: none; }
-
-    /* Footer */
-    footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(99, 102, 241, .2); }
-
-    /* Erişilebilirlik & mobil */
-    :focus-visible { outline: 2px solid var(--secondary); outline-offset: 3px; border-radius: 6px; }
-    @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
-    @media (max-width: 768px) {
-      .hero { flex-direction: column; }
-      .about-content { grid-template-columns: 1fr; }
-      .projects-grid { grid-template-columns: 1fr; }
-    }
-  </style>
-
-  <meta name="description" content="AI & Prompt Engineering üzerine çalışan Deniz Altuner'in portföyü, projeler, yetkinlikler ve iletişim." />
-  <link rel="canonical" href="https://www.example.com/" />
-  <link rel="icon" href="/favicon.ico" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Deniz Altuner - Portfolio" />
-  <meta property="og:description" content="AI & Prompt Engineering üzerine çalışan Deniz Altuner'in portföyü, projeler, yetkinlikler ve iletişim." />
-  <meta property="og:url" content="https://www.example.com/" />
-  <meta property="og:image" content="https://www.example.com/cover.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Deniz Altuner - Portfolio" />
-  <meta name="twitter:description" content="AI & Prompt Engineering üzerine çalışan Deniz Altuner'in portföyü, projeler, yetkinlikler ve iletişim." />
-  <meta name="twitter:image" content="https://www.example.com/cover.jpg" />
-
-  <style>
+</script>
+<style>
     html { scroll-behavior: smooth; }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-    .skip-link { position: absolute; left: -999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
-    .skip-link:focus { position: static; width: auto; height: auto; padding: .5rem 1rem; background: #111; color: #fff; z-index: 1000; display: inline-block; }
-    header { position: sticky; top: 0; z-index: 999; }
-    section, main > * { scroll-margin-top: 84px; }
-    .nav-toggle { display: none; background: transparent; border: 1px solid currentColor; padding: .5rem .75rem; border-radius: .5rem; }
-    @media (max-width: 768px) {
-      .nav-toggle { display: inline-block; }
-      #nav-links { display: none; }
-      #nav-links.open { display: block; }
+    body { background-color: #0b1326; font-family: 'Inter', sans-serif; transition: background-color 0.4s ease, color 0.4s ease; }
+    .glass-panel {
+        background: rgba(49, 57, 77, 0.2);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(70, 69, 84, 0.15);
+        transition: background 0.4s ease, border-color 0.4s ease;
     }
-    .form-status { margin-top: .5rem; color: #0a7f28; font-weight: 500; }
-  </style>
+    .hero-gradient { background: linear-gradient(135deg, #00D2FF 0%, #9D50BB 100%); }
+    .text-glow { text-shadow: 0 0 20px rgba(93, 230, 255, 0.3); }
+    .terminal-cursor {
+        border-right: 2px solid #5de6ff;
+        animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 50% { border-color: transparent; } }
+    @keyframes float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-10px) } }
+    .animate-float { animation: float 3s ease-in-out infinite; }
+    .project-card-hover:hover { transform: translateY(-6px); }
+    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Deniz Altuner",
-    "jobTitle": "AI & Prompt Engineer",
-    "url": "https://www.example.com/",
-    "image": "https://www.example.com/deniz.jpg",
-    "sameAs": [
-      "https://github.com/deniz",
-      "https://www.linkedin.com/in/deniz"
-    ]
-  }
-  </script>
+    /* ===== LIGHT MODE ===== */
+    html:not(.dark) body { background-color: #f0f2f8; color: #1e293b; }
+    html:not(.dark) .glass-panel {
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(99, 102, 241, 0.12);
+    }
+    html:not(.dark) nav { background: rgba(240, 242, 248, 0.85) !important; border-bottom-color: rgba(99, 102, 241, 0.15) !important; }
+    html:not(.dark) .text-on-surface, html:not(.dark) .text-on-background { color: #1e293b !important; }
+    html:not(.dark) .text-on-surface-variant { color: #475569 !important; }
+    html:not(.dark) .text-secondary-fixed-dim { color: #0891b2 !important; }
+    html:not(.dark) .text-primary-fixed { color: #4338ca !important; }
+    html:not(.dark) .text-primary-fixed-dim { color: #4f46e5 !important; }
+    html:not(.dark) .text-indigo-100, html:not(.dark) .text-indigo-300 { color: #312e81 !important; }
+    html:not(.dark) .text-slate-400 { color: #64748b !important; }
+    html:not(.dark) .hover\:text-indigo-200:hover { color: #4338ca !important; }
+    html:not(.dark) .text-slate-200 { color: #1e293b !important; }
+    html:not(.dark) .text-slate-500 { color: #64748b !important; }
+    html:not(.dark) .bg-surface-container-low { background-color: #e8eaf4 !important; }
+    html:not(.dark) .bg-surface-container-lowest { background-color: #ffffff !important; }
+    html:not(.dark) .bg-surface-container { background-color: #f0f2f8 !important; }
+    html:not(.dark) .bg-surface-variant { background-color: #e2e4f0 !important; }
+    html:not(.dark) .from-surface-container-low { --tw-gradient-from: #e8eaf4 !important; }
+    html:not(.dark) .to-surface-container-lowest { --tw-gradient-to: #ffffff !important; }
+    html:not(.dark) .from-surface-dim { --tw-gradient-from: #f0f2f8 !important; }
+    html:not(.dark) .via-surface-dim\/60 { --tw-gradient-via: rgba(240,242,248,0.6) !important; }
+    html:not(.dark) .from-surface-container { --tw-gradient-from: #f0f2f8 !important; }
+    html:not(.dark) footer { background-color: #e2e4f0 !important; border-top-color: rgba(99,102,241,0.1) !important; }
+    html:not(.dark) .border-surface { border-color: #f0f2f8 !important; }
+    html:not(.dark) .bg-surface { background-color: #f0f2f8 !important; }
+    html:not(.dark) input, html:not(.dark) textarea {
+        background-color: #ffffff !important;
+        border-color: rgba(99, 102, 241, 0.2) !important;
+        color: #1e293b !important;
+    }
+    html:not(.dark) input::placeholder, html:not(.dark) textarea::placeholder { color: #94a3b8 !important; }
+    html:not(.dark) .terminal-cursor { border-right-color: #0891b2; }
+    html:not(.dark) .bg-primary\/20 { background-color: rgba(99, 102, 241, 0.12) !important; }
+    html:not(.dark) .hover\:text-indigo-300:hover { color: #4338ca !important; }
+    .theme-toggle {
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .theme-toggle:hover { background: rgba(99, 102, 241, 0.1); }
+</style>
 </head>
-<body>
-  <a class="skip-link" href="#main">İçeriğe atla</a>
+<body class="text-on-surface selection:bg-primary-container selection:text-on-primary-container" id="body">
 
-  <!-- Navigation -->
-  <nav aria-label="Ana navigasyon">
-    <button class="nav-toggle" aria-controls="nav-links" aria-expanded="false">Menü</button>
-    <div class="nav-container" id="nav-links">
-      <a class="logo" href="#home">DA.</a>
-      <ul class="nav-links">
-        <li><a class="nav-link" href="#home">Ana Sayfa</a></li>
-        <li><a class="nav-link" href="#about">Hakkımda</a></li>
-        <li><a class="nav-link" href="#projects">Projeler</a></li>
-        <li><a class="nav-link" href="#skills">Yetenekler</a></li>
-        <li><a class="nav-link" href="#contact">İletişim</a></li>
-      </ul>
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-slate-950/40 backdrop-blur-xl border-b border-indigo-500/10 shadow-[0_0_40px_-15px_rgba(47,46,190,0.08)]">
+<div class="flex justify-between items-center max-w-7xl mx-auto px-8 py-4">
+    <a href="#hero" class="text-xl font-bold tracking-tighter text-indigo-100 hover:text-cyan-400 transition-colors">Deniz A.</a>
+    <div class="hidden md:flex items-center gap-8 font-sans text-sm tracking-tight uppercase font-medium">
+        <a class="nav-link text-indigo-300 border-b-2 border-cyan-400 pb-1" href="#hero">Ana Sayfa</a>
+        <a class="nav-link text-slate-400 hover:text-indigo-200 transition-colors" href="#about">Hakkımda</a>
+        <a class="nav-link text-slate-400 hover:text-indigo-200 transition-colors" href="#projects">Projeler</a>
+        <a class="nav-link text-slate-400 hover:text-indigo-200 transition-colors" href="#skills">Yetenekler</a>
+        <a class="nav-link text-slate-400 hover:text-indigo-200 transition-colors" href="#contact">İletişim</a>
     </div>
-  </nav>
+    <div class="flex items-center gap-4">
+        <button id="theme-toggle" class="theme-toggle" title="Tema Değiştir" aria-label="Tema Değiştir">
+            <span class="material-symbols-outlined text-indigo-400" id="theme-icon">light_mode</span>
+        </button>
+        <button id="mobile-menu-btn" class="md:hidden material-symbols-outlined text-indigo-400 hover:bg-indigo-500/5 p-2 rounded-lg transition-all">menu</button>
+        <a href="#contact" class="bg-gradient-to-r from-[#00D2FF] to-[#9D50BB] text-on-primary-fixed px-6 py-2 rounded-xl text-sm font-bold tracking-tight hover:scale-105 active:scale-95 transition-all duration-300">İletişime Geç</a>
+    </div>
+</div>
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="hidden md:hidden px-8 pb-4 space-y-3 font-sans text-sm uppercase font-medium">
+    <a class="block text-slate-400 hover:text-indigo-200 transition-colors" href="#hero">Ana Sayfa</a>
+    <a class="block text-slate-400 hover:text-indigo-200 transition-colors" href="#about">Hakkımda</a>
+    <a class="block text-slate-400 hover:text-indigo-200 transition-colors" href="#projects">Projeler</a>
+    <a class="block text-slate-400 hover:text-indigo-200 transition-colors" href="#skills">Yetenekler</a>
+    <a class="block text-slate-400 hover:text-indigo-200 transition-colors" href="#contact">İletişim</a>
+</div>
+</nav>
 
-  <!-- Home Page -->
-  <div class="page active" id="home">
-    <div class="hero">
-      <div class="hero-content">
-        <h1>Merhaba, Ben Deniz Altuner</h1>
-        <p class="subtitle">AI &amp; Prompt Engineering Uzmanı | Yazılım Geliştirici</p>
-        <p class="hero-description">
-          Bandırma On Yedi Eylül Üniversitesi'nde Yönetim Bilişim Sistemleri son sınıf öğrencisiyim.
-          Yapay zeka ve prompt mühendisliği alanlarında uzmanlaşarak, AI teknolojilerinin
-          potansiyelini açığa çıkaran yenilikçi çözümler geliştiriyorum.
+<main class="relative pt-24 pb-12">
+
+<!-- Hero Section -->
+<section id="hero" class="max-w-7xl mx-auto px-8 min-h-[90vh] flex flex-col md:flex-row items-center gap-12 mb-32 scroll-mt-24">
+<div class="flex-1 space-y-8 fade-in">
+    <div class="inline-flex items-center gap-2 px-3 py-1 glass-panel rounded-full">
+        <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+        <span class="text-xs font-label uppercase tracking-widest text-secondary-fixed-dim">Sistem Durumu: Aktif</span>
+    </div>
+    <h1 class="text-5xl md:text-7xl font-bold tracking-tighter leading-tight">
+        Merhaba, Ben <br/>
+        <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Deniz Altuner.</span>
+    </h1>
+    <p class="text-xl md:text-2xl text-on-surface-variant font-light max-w-2xl leading-relaxed">
+        AI &amp; Prompt Engineering Uzmanı | Yazılım Geliştirici
+    </p>
+    <div class="flex items-center gap-4 font-mono text-sm text-secondary-fixed-dim glass-panel p-4 rounded-xl border-l-4 border-secondary">
+        <span class="material-symbols-outlined text-sm">chevron_right</span>
+        <span class="terminal-cursor">Potansiyel analiz ediliyor...</span>
+    </div>
+    <div class="flex flex-wrap gap-4 pt-4">
+        <a href="#projects" class="hero-gradient text-on-primary-fixed px-8 py-4 rounded-xl font-bold flex items-center gap-2 hover:shadow-[0_0_30px_-5px_rgba(93,230,255,0.4)] transition-all">
+            Projeleri İncele
+            <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+        <a href="#contact" class="glass-panel text-on-surface px-8 py-4 rounded-xl font-bold border border-outline-variant/20 hover:bg-surface-bright/40 transition-all">
+            İletişime Geç
+        </a>
+    </div>
+</div>
+<div class="relative flex-shrink-0 group">
+    <div class="relative w-64 h-64 md:w-96 md:h-96 animate-float">
+        <div class="w-full h-full rounded-full p-1.5 bg-gradient-to-tr from-secondary via-transparent to-tertiary">
+            <div class="w-full h-full rounded-full overflow-hidden border-4 border-surface bg-surface-container">
+                <img alt="Deniz Altuner" class="w-full h-full object-cover" src="209046051.jpeg"/>
+            </div>
+        </div>
+    </div>
+    <div class="absolute -inset-4 bg-primary/20 blur-3xl -z-10 rounded-full group-hover:bg-primary/30 transition-all"></div>
+</div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="bg-surface-container-low py-24 mb-32 relative overflow-hidden scroll-mt-24">
+<div class="max-w-7xl mx-auto px-8 relative z-10 flex flex-col md:flex-row gap-16 fade-in">
+    <div class="md:w-1/3">
+        <h2 class="text-sm uppercase tracking-[0.2em] text-secondary-fixed-dim mb-4">Hakkımda</h2>
+        <h3 class="text-4xl font-bold tracking-tight text-primary-fixed mb-6">AI ve Yaratıcılık</h3>
+        <div class="flex items-center gap-3 text-on-surface-variant mb-3">
+            <span class="material-symbols-outlined text-secondary">location_on</span>
+            <span class="font-medium">Kocaeli / Gebze, Türkiye</span>
+        </div>
+        <div class="flex items-center gap-3 text-on-surface-variant mb-3">
+            <span class="material-symbols-outlined text-secondary">school</span>
+            <span class="font-medium">Bandırma 17 Eylül Üniversitesi - YBS</span>
+        </div>
+        <div class="flex items-center gap-3 text-on-surface-variant">
+            <span class="material-symbols-outlined text-secondary">mail</span>
+            <span class="font-medium">ben_deniz_melisa@outlook.com</span>
+        </div>
+    </div>
+    <div class="md:w-2/3 space-y-6 text-lg text-on-surface-variant leading-relaxed">
+        <p>
+            23 yaşındayım ve Kocaeli'nin Gebze ilçesinde yaşıyorum. Teknolojinin sadece bir araç değil, yaratıcılığın bir uzantısı olduğuna inanıyorum. Modern yazılım geliştirme süreçlerini yapay zeka ile optimize ederek, karmaşık problemleri zarif ve ölçeklenebilir çözümlere dönüştürüyorum.
         </p>
-        <div class="hero-buttons">
-          <a class="btn btn-primary" href="#projects">🚀 Projelerimi Gör</a>
-          <a class="btn btn-secondary" href="#contact">💬 İletişime Geç</a>
-        </div>
-        <div class="tech-stack">
-          <div class="tech-badge">AI &amp; Prompt Engineering</div>
-          <div class="tech-badge">Machine Learning</div>
-          <div class="tech-badge">Python</div>
-          <div class="tech-badge">TensorFlow</div>
-          <div class="tech-badge">C# .NET</div>
-          <div class="tech-badge">TypeScript</div>
-        </div>
-      </div>
-      <div class="profile-section">
-        <div class="profile-photo">
-          <div class="profile-photo-inner">
-            <!-- YEREL JPEG KULLANIMI -->
-            <img src="209046051.jpeg" alt="Deniz Altuner" loading="lazy" decoding="async" />
-          </div>
-        </div>
-      </div>
+        <p>
+            Prompt Engineering disiplinini yazılım mimarisiyle harmanlayarak, LLM tabanlı uygulamalar ve otonom sistemler üzerine odaklanıyorum. Gebze teknik ekosisteminin merkezinde, geleceğin dijital dünyasını bugünden inşa ediyorum.
+        </p>
     </div>
-  </div>
+</div>
+</section>
 
-  <!-- About Page -->
-  <div class="page" id="about">
-    <section>
-      <h2 class="section-title">Hakkımda</h2>
-      <div class="about-content">
-        <div class="about-text">
-          <p>
-            22 yaşındayım ve Kocaeli'nin Gebze ilçesinde yaşıyorum. Teknolojiye olan tutkum,
-            yapay zekanın sunduğu sınırsız olanaklarla birleştiğinde, kendimi bu alanda
-            derinlemesine geliştirmeye adadım. Özellikle prompt mühendisliği konusunda
-            uzmanlaşarak, AI modellerinin gerçek potansiyelini ortaya çıkarmak için çalışıyorum.
-          </p>
-          <br />
-          <p>
-            Yapay zeka teknolojilerinin sadece bir araç değil, aynı zamanda yaratıcılığı ve
-            üretkenliği artıran bir ortak olduğuna inanıyorum. Bu vizyonla, hem kendi
-            projelerimde hem de açık kaynak topluluğuna katkılarımda, AI'nın gücünü
-            herkes için erişilebilir kılmaya çalışıyorum.
-          </p>
+<!-- Projects Bento Grid -->
+<section id="projects" class="max-w-7xl mx-auto px-8 mb-32 scroll-mt-24">
+<div class="flex justify-between items-end mb-12 fade-in">
+    <div>
+        <h2 class="text-xs uppercase tracking-[0.3em] text-primary mb-2">Seçili Projeler</h2>
+        <p class="text-3xl font-bold tracking-tight">Mühendislik Harikaları</p>
+    </div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- Project 1 (Large) - Brain Tumor -->
+    <div class="md:col-span-2 group relative glass-panel rounded-3xl overflow-hidden p-8 flex flex-col justify-end min-h-[400px] border border-outline-variant/10 hover:border-secondary/40 transition-all project-card-hover fade-in">
+        <div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-surface-dim/60 to-transparent z-10"></div>
+        <div class="absolute top-4 right-4 z-20">
+            <div class="w-12 h-12 rounded-xl glass-panel flex items-center justify-center">
+                <span class="material-symbols-outlined text-secondary text-2xl">neurology</span>
+            </div>
+        </div>
+        <div class="relative z-20 space-y-4">
+            <div class="flex gap-2 flex-wrap">
+                <span class="px-3 py-1 bg-surface-variant rounded-full text-[10px] font-bold uppercase text-primary-fixed-dim">Python</span>
+                <span class="px-3 py-1 bg-surface-variant rounded-full text-[10px] font-bold uppercase text-primary-fixed-dim">TensorFlow</span>
+                <span class="px-3 py-1 bg-surface-variant rounded-full text-[10px] font-bold uppercase text-primary-fixed-dim">CNN</span>
+                <span class="px-3 py-1 bg-surface-variant rounded-full text-[10px] font-bold uppercase text-primary-fixed-dim">Medical AI</span>
+            </div>
+            <h4 class="text-3xl font-bold tracking-tight">Brain Tumor Classification MRI</h4>
+            <p class="text-on-surface-variant max-w-md">Derin öğrenme ve yapay zeka teknikleriyle MRI görüntülerinden beyin tümörlerini otomatik tespit eden sistem. SVM mimarisi ile %94.60+ doğruluk oranı.</p>
+            <div class="pt-4 flex gap-4">
+                <a href="https://github.com/Denizaltnr/brain-tumor-classification-mri" target="_blank" rel="noopener noreferrer"><span class="material-symbols-outlined text-secondary cursor-pointer hover:scale-110 transition-transform">open_in_new</span></a>
+                <a href="https://github.com/Denizaltnr/brain-tumor-classification-mri" target="_blank" rel="noopener noreferrer"><span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">code</span></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project 2 - AI Prompt Tools -->
+    <div class="group glass-panel rounded-3xl overflow-hidden p-8 flex flex-col justify-between border border-outline-variant/10 hover:border-tertiary/40 transition-all bg-gradient-to-br from-surface-container to-surface-container-lowest project-card-hover fade-in">
+        <div class="space-y-4">
+            <div class="flex gap-2"><span class="px-3 py-1 bg-surface-variant rounded-full text-[10px] font-bold uppercase text-tertiary">Prompt Eng.</span></div>
+            <h4 class="text-2xl font-bold tracking-tight">AI Prompt Engineering Tools</h4>
+            <p class="text-sm text-on-surface-variant leading-relaxed">ChatGPT, Claude ve diğer LLM'ler için optimize edilmiş prompt şablonları ve otomatik prompt geliştirme araçları.</p>
+        </div>
+        <div class="mt-6 flex items-center justify-between">
+            <div class="flex gap-2 flex-wrap">
+                <span class="px-2 py-0.5 bg-surface-variant/50 rounded-full text-[9px] text-on-surface-variant">Python</span>
+                <span class="px-2 py-0.5 bg-surface-variant/50 rounded-full text-[9px] text-on-surface-variant">OpenAI API</span>
+            </div>
+            <a href="https://github.com/Denizaltnr/AI-Prompt-Engineering-Tools" target="_blank" rel="noopener noreferrer" class="text-secondary hover:scale-110 transition-transform"><span class="material-symbols-outlined text-sm">open_in_new</span></a>
+        </div>
+    </div>
+
+    <!-- Project 3 - AI Karar Simülasyon -->
+    <div class="group glass-panel rounded-3xl overflow-hidden p-8 flex flex-col justify-between border border-outline-variant/10 hover:border-primary/40 transition-all project-card-hover fade-in">
+        <div class="h-12 w-12 bg-primary-container/20 rounded-xl flex items-center justify-center mb-6">
+            <span class="material-symbols-outlined text-primary">robot_2</span>
+        </div>
+        <div class="space-y-2">
+            <h4 class="text-xl font-bold tracking-tight">AI Karar Simülasyon Platformu</h4>
+            <p class="text-sm text-on-surface-variant">LLM ve Monte Carlo olasılıksal modelleme ile kararları simüle eden yapay zeka destekli interaktif karar motoru.</p>
+        </div>
+        <div class="mt-6 flex items-center justify-between">
+            <div class="flex -space-x-2">
+                <div class="w-8 h-8 rounded-full border-2 border-surface bg-indigo-500 flex items-center justify-center text-[8px] text-white font-bold">Nx</div>
+                <div class="w-8 h-8 rounded-full border-2 border-surface bg-cyan-500 flex items-center justify-center text-[8px] text-white font-bold">Py</div>
+                <div class="w-8 h-8 rounded-full border-2 border-surface bg-purple-500 flex items-center justify-center text-[8px] text-white font-bold">AI</div>
+            </div>
+            <a href="https://github.com/Denizaltnr/AI-Archiltect" target="_blank" rel="noopener noreferrer" class="text-[10px] font-bold text-secondary hover:text-primary transition-colors">GÖRÜNTÜLE →</a>
+        </div>
+    </div>
+
+    <!-- Project 4 (Wide) - Multipass -->
+    <div class="md:col-span-2 group glass-panel rounded-3xl overflow-hidden p-1 flex flex-col md:flex-row border border-outline-variant/10 hover:border-secondary/40 transition-all project-card-hover fade-in">
+        <div class="md:w-1/2 p-8 flex flex-col justify-center gap-4">
+            <span class="px-3 py-1 bg-surface-variant rounded-full text-[10px] font-bold uppercase text-secondary w-fit">AI Agent & VM</span>
+            <h4 class="text-2xl font-bold tracking-tight">Multipass AI Platform</h4>
+            <p class="text-sm text-on-surface-variant">AI Agent destekli sanal makine oluşturma ve yönetim sistemi. Otomatik VM orchestration, modern React frontend ve yapay zeka entegrasyonu.</p>
+            <div class="flex gap-2 flex-wrap">
+                <span class="px-2 py-0.5 bg-surface-variant/50 rounded-full text-[9px] text-on-surface-variant">Python</span>
+                <span class="px-2 py-0.5 bg-surface-variant/50 rounded-full text-[9px] text-on-surface-variant">TypeScript</span>
+                <span class="px-2 py-0.5 bg-surface-variant/50 rounded-full text-[9px] text-on-surface-variant">React</span>
+                <span class="px-2 py-0.5 bg-surface-variant/50 rounded-full text-[9px] text-on-surface-variant">REST API</span>
+            </div>
+            <a href="https://github.com/Denizaltnr/multipass_backend" target="_blank" rel="noopener noreferrer" class="mt-2 text-xs font-bold uppercase tracking-widest text-primary flex items-center gap-2 group-hover:gap-4 transition-all">
+                Detaylı İnceleme <span class="material-symbols-outlined text-sm">east</span>
+            </a>
+        </div>
+        <div class="md:w-1/2 h-64 md:h-auto overflow-hidden rounded-2xl m-1 bg-gradient-to-br from-surface-container-low to-surface-container-lowest flex items-center justify-center">
+            <div class="text-center p-8 space-y-4">
+                <span class="material-symbols-outlined text-6xl text-primary/40">deployed_code</span>
+                <p class="text-xs text-on-surface-variant/60 uppercase tracking-widest">Tam Yığın AI Platformu</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project 5 - Fitness Platform -->
+    <div class="group glass-panel rounded-3xl overflow-hidden p-8 flex flex-col justify-between border border-outline-variant/10 hover:border-tertiary/40 transition-all bg-gradient-to-br from-surface-container to-surface-container-lowest project-card-hover fade-in">
+        <div class="space-y-4">
+            <div class="h-10 w-10 bg-tertiary/10 rounded-xl flex items-center justify-center mb-2">
+                <span class="material-symbols-outlined text-tertiary">fitness_center</span>
+            </div>
+            <h4 class="text-xl font-bold tracking-tight">AI Fitness & Diyet Platformu</h4>
+            <p class="text-sm text-on-surface-variant leading-relaxed">OpenAI GPT-4o-mini ile kişiselleştirilmiş 7 günlük yemek planları, egzersiz takibi ve alışveriş listesi.</p>
+        </div>
+        <div class="mt-4 flex gap-2 flex-wrap">
+            <span class="px-2 py-0.5 bg-surface-variant/50 rounded-full text-[9px] text-on-surface-variant">React</span>
+            <span class="px-2 py-0.5 bg-surface-variant/50 rounded-full text-[9px] text-on-surface-variant">Node.js</span>
+            <span class="px-2 py-0.5 bg-surface-variant/50 rounded-full text-[9px] text-on-surface-variant">OpenAI</span>
+        </div>
+        <a href="https://github.com/Denizaltnr/AI-Destekli-Fitness-Program-" target="_blank" rel="noopener noreferrer" class="mt-4 text-xs font-bold text-secondary flex items-center gap-1 hover:gap-3 transition-all">GitHub <span class="material-symbols-outlined text-sm">east</span></a>
+    </div>
+
+    <!-- Project 6 - CV Yorumlayıcı -->
+    <div class="group glass-panel rounded-3xl overflow-hidden p-8 flex flex-col justify-between border border-outline-variant/10 hover:border-primary/40 transition-all project-card-hover fade-in">
+        <div class="space-y-4">
+            <div class="h-10 w-10 bg-primary/10 rounded-xl flex items-center justify-center mb-2">
+                <span class="material-symbols-outlined text-primary">description</span>
+            </div>
+            <h4 class="text-xl font-bold tracking-tight">AI CV Yorumlayıcı</h4>
+            <p class="text-sm text-on-surface-variant leading-relaxed">PDF/DOCX özgeçmişleri analiz eden yapay zeka uygulaması. Google Gemini ve Mistral AI ile güçlü analiz.</p>
+        </div>
+        <div class="mt-4 flex gap-2 flex-wrap">
+            <span class="px-2 py-0.5 bg-surface-variant/50 rounded-full text-[9px] text-on-surface-variant">Python</span>
+            <span class="px-2 py-0.5 bg-surface-variant/50 rounded-full text-[9px] text-on-surface-variant">Streamlit</span>
+            <span class="px-2 py-0.5 bg-surface-variant/50 rounded-full text-[9px] text-on-surface-variant">Gemini</span>
+        </div>
+        <a href="https://github.com/Denizaltnr/AI-CV-YORUMLAYICI" target="_blank" rel="noopener noreferrer" class="mt-4 text-xs font-bold text-secondary flex items-center gap-1 hover:gap-3 transition-all">GitHub <span class="material-symbols-outlined text-sm">east</span></a>
+    </div>
+
+    <!-- Project 7 - Semantic Code Search -->
+    <div class="group glass-panel rounded-3xl overflow-hidden p-8 flex flex-col justify-between border border-outline-variant/10 hover:border-secondary/40 transition-all project-card-hover fade-in">
+        <div class="space-y-4">
+            <div class="h-10 w-10 bg-secondary/10 rounded-xl flex items-center justify-center mb-2">
+                <span class="material-symbols-outlined text-secondary">search</span>
+            </div>
+            <h4 class="text-xl font-bold tracking-tight">Semantic Code Search</h4>
+            <p class="text-sm text-on-surface-variant leading-relaxed">Büyük kod depolarında doğal dil ile arama yapmayı sağlayan akıllı indeksleme sistemi.</p>
+        </div>
+        <div class="mt-4 flex gap-2 flex-wrap">
+            <span class="px-2 py-0.5 bg-surface-variant/50 rounded-full text-[9px] text-on-surface-variant">React</span>
+            <span class="px-2 py-0.5 bg-surface-variant/50 rounded-full text-[9px] text-on-surface-variant">AI</span>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills" class="max-w-7xl mx-auto px-8 mb-32 scroll-mt-24">
+<div class="text-center mb-16 fade-in">
+    <h2 class="text-xs uppercase tracking-[0.3em] text-tertiary mb-2">Yetenek Seti</h2>
+    <h3 class="text-4xl font-bold tracking-tight">Temel Teknolojiler</h3>
+</div>
+<div class="flex flex-wrap justify-center gap-4 md:gap-8 fade-in">
+    <div class="group flex flex-col items-center gap-4">
+        <div class="w-20 h-20 rounded-2xl glass-panel flex items-center justify-center border border-outline-variant/10 group-hover:border-secondary group-hover:shadow-[0_0_20px_rgba(93,230,255,0.2)] transition-all duration-500">
+            <span class="material-symbols-outlined text-4xl text-secondary">terminal</span>
+        </div>
+        <span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Python</span>
+    </div>
+    <div class="group flex flex-col items-center gap-4">
+        <div class="w-20 h-20 rounded-2xl glass-panel flex items-center justify-center border border-outline-variant/10 group-hover:border-primary group-hover:shadow-[0_0_20px_rgba(192,193,255,0.2)] transition-all duration-500">
+            <span class="material-symbols-outlined text-4xl text-primary">neurology</span>
+        </div>
+        <span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">TensorFlow</span>
+    </div>
+    <div class="group flex flex-col items-center gap-4">
+        <div class="w-20 h-20 rounded-2xl glass-panel flex items-center justify-center border border-outline-variant/10 group-hover:border-tertiary group-hover:shadow-[0_0_20px_rgba(237,177,255,0.2)] transition-all duration-500">
+            <span class="material-symbols-outlined text-4xl text-tertiary">data_object</span>
+        </div>
+        <span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">React</span>
+    </div>
+    <div class="group flex flex-col items-center gap-4">
+        <div class="w-20 h-20 rounded-2xl glass-panel flex items-center justify-center border border-outline-variant/10 group-hover:border-secondary-container group-hover:shadow-[0_0_20px_rgba(0,203,230,0.2)] transition-all duration-500">
+            <span class="material-symbols-outlined text-4xl text-secondary-container">database</span>
+        </div>
+        <span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">PostgreSQL</span>
+    </div>
+    <div class="group flex flex-col items-center gap-4">
+        <div class="w-20 h-20 rounded-2xl glass-panel flex items-center justify-center border border-outline-variant/10 group-hover:border-on-primary-container group-hover:shadow-[0_0_20px_rgba(13,0,150,0.2)] transition-all duration-500">
+            <span class="material-symbols-outlined text-4xl text-primary-container">cloud</span>
+        </div>
+        <span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Azure AI</span>
+    </div>
+    <div class="group flex flex-col items-center gap-4">
+        <div class="w-20 h-20 rounded-2xl glass-panel flex items-center justify-center border border-outline-variant/10 group-hover:border-secondary group-hover:shadow-[0_0_20px_rgba(93,230,255,0.2)] transition-all duration-500">
+            <span class="material-symbols-outlined text-4xl text-secondary">token</span>
+        </div>
+        <span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Prompting</span>
+    </div>
+    <div class="group flex flex-col items-center gap-4">
+        <div class="w-20 h-20 rounded-2xl glass-panel flex items-center justify-center border border-outline-variant/10 group-hover:border-primary group-hover:shadow-[0_0_20px_rgba(192,193,255,0.2)] transition-all duration-500">
+            <span class="material-symbols-outlined text-4xl text-primary">code</span>
+        </div>
+        <span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">C# .NET</span>
+    </div>
+    <div class="group flex flex-col items-center gap-4">
+        <div class="w-20 h-20 rounded-2xl glass-panel flex items-center justify-center border border-outline-variant/10 group-hover:border-tertiary group-hover:shadow-[0_0_20px_rgba(237,177,255,0.2)] transition-all duration-500">
+            <span class="material-symbols-outlined text-4xl text-tertiary">javascript</span>
+        </div>
+        <span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">TypeScript</span>
+    </div>
+</div>
+<!-- Pulse Loader -->
+<div class="mt-20 max-w-xl mx-auto space-y-2 fade-in">
+    <div class="flex justify-between text-[10px] uppercase tracking-widest text-secondary-fixed-dim">
+        <span>İşlem Kapasitesi</span>
+        <span>%98 Senkronize</span>
+    </div>
+    <div class="h-1 w-full bg-surface-variant rounded-full overflow-hidden relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-secondary to-tertiary w-4/5 rounded-full"></div>
+        <div class="absolute h-full w-20 bg-white/20 blur-sm animate-[pulse_2s_infinite]"></div>
+    </div>
+</div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="max-w-7xl mx-auto px-8 mb-16 scroll-mt-24">
+<div class="text-center mb-12 fade-in">
+    <h2 class="text-xs uppercase tracking-[0.3em] text-secondary mb-2">İletişim</h2>
+    <h3 class="text-4xl font-bold tracking-tight">Birlikte Çalışalım</h3>
+</div>
+<div class="max-w-lg mx-auto fade-in">
+    <form class="glass-panel rounded-3xl p-8 space-y-6 border border-outline-variant/10" onsubmit="handleSubmit(event)">
+        <div>
+            <label for="name" class="text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Adınız</label>
+            <input id="name" name="name" type="text" required class="w-full bg-surface-container-lowest border border-outline-variant/15 rounded-xl px-4 py-3 text-on-surface placeholder:text-outline focus:border-secondary focus:shadow-[0_0_15px_rgba(93,230,255,0.15)] transition-all outline-none" placeholder="Adınız..."/>
         </div>
         <div>
-          <div class="info-item"><strong>🎓 Eğitim:</strong> Bandırma On Yedi Eylül Üniversitesi - YBS</div>
-          <div class="info-item"><strong>📍 Lokasyon:</strong> Kocaeli, Gebze</div>
-          <div class="info-item"><strong>💼 Odak:</strong> AI, Prompt Engineering, Machine Learning</div>
-          <div class="info-item"><strong>📧 E-posta:</strong> ben_deniz_melisa@outlook.com</div>
+            <label for="email" class="text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">E-posta</label>
+            <input id="email" name="email" type="email" required class="w-full bg-surface-container-lowest border border-outline-variant/15 rounded-xl px-4 py-3 text-on-surface placeholder:text-outline focus:border-secondary focus:shadow-[0_0_15px_rgba(93,230,255,0.15)] transition-all outline-none" placeholder="E-posta adresiniz..."/>
         </div>
-      </div>
-    </section>
-  </div>
+        <div>
+            <label for="subject" class="text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Konu</label>
+            <input id="subject" name="subject" type="text" required class="w-full bg-surface-container-lowest border border-outline-variant/15 rounded-xl px-4 py-3 text-on-surface placeholder:text-outline focus:border-secondary focus:shadow-[0_0_15px_rgba(93,230,255,0.15)] transition-all outline-none" placeholder="Konu..."/>
+        </div>
+        <div>
+            <label for="message" class="text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Mesajınız</label>
+            <textarea id="message" name="message" rows="5" required class="w-full bg-surface-container-lowest border border-outline-variant/15 rounded-xl px-4 py-3 text-on-surface placeholder:text-outline focus:border-secondary focus:shadow-[0_0_15px_rgba(93,230,255,0.15)] transition-all outline-none resize-none" placeholder="Mesajınız..."></textarea>
+        </div>
+        <button type="submit" class="w-full hero-gradient text-on-primary-fixed py-4 rounded-xl font-bold hover:shadow-[0_0_30px_-5px_rgba(93,230,255,0.4)] transition-all flex items-center justify-center gap-2">
+            Mesaj Gönder <span class="material-symbols-outlined">send</span>
+        </button>
+    </form>
+    <div class="flex justify-center gap-6 mt-8">
+        <a href="https://github.com/Denizaltnr" target="_blank" rel="noopener noreferrer" class="w-12 h-12 glass-panel rounded-xl flex items-center justify-center border border-outline-variant/10 hover:border-secondary hover:shadow-[0_0_20px_rgba(93,230,255,0.2)] transition-all duration-500 text-on-surface-variant hover:text-secondary">
+            <svg fill="currentColor" viewBox="0 0 24 24" width="20" height="20"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/deniz-altuner-a58612180" target="_blank" rel="noopener noreferrer" class="w-12 h-12 glass-panel rounded-xl flex items-center justify-center border border-outline-variant/10 hover:border-primary hover:shadow-[0_0_20px_rgba(192,193,255,0.2)] transition-all duration-500 text-on-surface-variant hover:text-primary">
+            <svg fill="currentColor" viewBox="0 0 24 24" width="20" height="20"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        </a>
+        <a href="mailto:ben_deniz_melisa@outlook.com" class="w-12 h-12 glass-panel rounded-xl flex items-center justify-center border border-outline-variant/10 hover:border-tertiary hover:shadow-[0_0_20px_rgba(237,177,255,0.2)] transition-all duration-500 text-on-surface-variant hover:text-tertiary">
+            <span class="material-symbols-outlined text-xl">mail</span>
+        </a>
+    </div>
+</div>
+</section>
 
-  <!-- Projects Page -->
-  <div class="page" id="projects">
-    <section>
-      <h2 class="section-title">Projelerim</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <h3 class="project-title">Brain Tumor Classification MRI</h3>
-          <p class="project-description">
-            Derin öğrenme ve yapay zeka teknikleriyle MRI görüntülerinden beyin tümörlerini
-            otomatik tespit eden sistem. SVM mimarisi ile %94.60+ doğruluk oranına ulaşıldı.
-          </p>
-          <div class="project-tech">
-            <span>Python</span><span>TensorFlow</span><span>CNN</span><span>Medical AI</span>
-          </div>
-          <a class="project-link" href="https://github.com/Denizaltnr/brain-tumor-classification-mri" target="_blank" rel="noopener noreferrer">GitHub →</a>
-        </div>
-        <div class="project-card">
-          <h3 class="project-title">AI Prompt Engineering Tools</h3>
-          <p class="project-description">ChatGPT, Claude ve diğer LLM'ler için optimize edilmiş prompt şablonları ve otomatik prompt geliştirme araçları.</p>
-          <div class="project-tech">
-            <span>Prompt Engineering</span><span>Python</span><span>OpenAI API</span>
-          </div>
-          <a class="project-link" href="https://github.com/Denizaltnr/AI-Prompt-Engineering-Tools" target="_blank" rel="noopener noreferrer">GitHub →</a>
-        </div>
-        <div class="project-card">
-          <h3 class="project-title">Multipass AI Backend</h3>
-          <p class="project-description">AI Agent destekli sanal makine oluşturma ve yönetim sistemi. Otomatik VM orchestration ve yapay zeka entegrasyonu.</p>
-          <div class="project-tech">
-            <span>Python</span><span>AI Agent</span><span>REST API</span>
-          </div>
-          <a class="project-link" href="https://github.com/Denizaltnr/multipass_backend" target="_blank" rel="noopener noreferrer">GitHub →</a>
-        </div>
-        <div class="project-card">
-          <h3 class="project-title">Multipass Frontend</h3>
-          <p class="project-description">Modern ve kullanıcı dostu VM yönetim arayüzü. Gerçek zamanlı durum takibi ve responsive tasarım.</p>
-          <div class="project-tech">
-            <span>TypeScript</span><span>React</span><span>UI/UX</span>
-          </div>
-          <a class="project-link" href="https://github.com/Denizaltnr/multipass_frontend" target="_blank" rel="noopener noreferrer">GitHub →</a>
-        </div>
-        <div class="project-card">
-          <h3 class="project-title">AI Karar Simülasyon Platformu</h3>
-          <p class="project-description">
-            LLM ve Monte Carlo olasılıksal modelleme kullanarak kararları simüle eden yapay zeka destekli interaktif karar motoru.
-            6 aylık projeksiyon, risk analizi ve stratejik tavsiyeler sunar.
-          </p>
-          <div class="project-tech">
-            <span>Next.js 15</span><span>TypeScript</span><span>Python</span><span>FastAPI</span><span>Mistral AI</span><span>PostgreSQL</span>
-          </div>
-          <a class="project-link" href="https://github.com/Denizaltnr/AI-Archiltect" target="_blank" rel="noopener noreferrer">GitHub →</a>
-        </div>
-        <div class="project-card">
-          <h3 class="project-title">AI Destekli Fitness & Diyet Platformu</h3>
-          <p class="project-description">
-            OpenAI GPT-4o-mini ile kişiselleştirilmiş 7 günlük yemek planları, egzersiz takibi ve Türk marketlerinden
-            gerçek fiyatlarla alışveriş listesi oluşturan kapsamlı sağlık platformu.
-          </p>
-          <div class="project-tech">
-            <span>React</span><span>TypeScript</span><span>Node.js</span><span>Express</span><span>OpenAI API</span><span>Stripe</span><span>PostgreSQL</span>
-          </div>
-          <a class="project-link" href="https://github.com/Denizaltnr/AI-Destekli-Fitness-Program-" target="_blank" rel="noopener noreferrer">GitHub →</a>
-        </div>
-        <div class="project-card">
-          <h3 class="project-title">AI CV Yorumlayıcı</h3>
-          <p class="project-description">
-            Streamlit arayüzü ile PDF/DOCX formatındaki özgeçmişleri analiz eden yapay zeka uygulaması.
-            Google Gemini ve Mistral AI ile güçlü yönler, beceriler ve iyileştirme önerileri sunar.
-          </p>
-          <div class="project-tech">
-            <span>Python</span><span>Streamlit</span><span>Gemini API</span><span>Mistral AI</span><span>OCR</span>
-          </div>
-          <a class="project-link" href="https://github.com/Denizaltnr/AI-CV-YORUMLAYICI" target="_blank" rel="noopener noreferrer">GitHub →</a>
-        </div>
-      </div>
-    </section>
-  </div>
+</main>
 
-  <!-- Skills Page -->
-  <div class="page" id="skills">
-    <section>
-      <h2 class="section-title">Yeteneklerim</h2>
-      <div class="skills-container">
-        <div class="skill-category">
-          <h3>AI &amp; Machine Learning</h3>
-          <div class="skill-item"><div class="skill-name"><span>Prompt Engineering</span><span>90%</span></div><div class="skill-bar"><div class="skill-progress" style="width:90%"></div></div></div>
-          <div class="skill-item"><div class="skill-name"><span>Machine Learning</span><span>80%</span></div><div class="skill-bar"><div class="skill-progress" style="width:80%"></div></div></div>
-          <div class="skill-item"><div class="skill-name"><span>TensorFlow &amp; Keras</span><span>75%</span></div><div class="skill-bar"><div class="skill-progress" style="width:75%"></div></div></div>
-        </div>
-        <div class="skill-category">
-          <h3>Programming</h3>
-          <div class="skill-item"><div class="skill-name"><span>Python</span><span>85%</span></div><div class="skill-bar"><div class="skill-progress" style="width:85%"></div></div></div>
-          <div class="skill-item"><div class="skill-name"><span>C# .NET</span><span>80%</span></div><div class="skill-bar"><div class="skill-progress" style="width:80%"></div></div></div>
-          <div class="skill-item"><div class="skill-name"><span>TypeScript</span><span>70%</span></div><div class="skill-bar"><div class="skill-progress" style="width:70%"></div></div></div>
-        </div>
-        <div class="skill-category">
-          <h3>Tools &amp; Technologies</h3>
-          <div class="skill-item"><div class="skill-name"><span>Git &amp; GitHub</span><span>90%</span></div><div class="skill-bar"><div class="skill-progress" style="width:90%"></div></div></div>
-          <div class="skill-item"><div class="skill-name"><span>SQL &amp; Database</span><span>75%</span></div><div class="skill-bar"><div class="skill-progress" style="width:75%"></div></div></div>
-          <div class="skill-item"><div class="skill-name"><span>React</span><span>70%</span></div><div class="skill-bar"><div class="skill-progress" style="width:70%"></div></div></div>
-        </div>
-      </div>
-    </section>
-  </div>
+<!-- Footer -->
+<footer class="bg-slate-950 w-full py-12 px-8 border-t border-indigo-500/5">
+<div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto gap-6">
+    <div class="text-lg font-bold text-slate-200">Deniz A.</div>
+    <div class="flex gap-8 font-sans text-xs uppercase tracking-[0.1em] text-slate-500">
+        <a class="hover:text-indigo-300 transition-colors" href="https://github.com/Denizaltnr" target="_blank">GitHub</a>
+        <a class="hover:text-indigo-300 transition-colors" href="https://www.linkedin.com/in/deniz-altuner-a58612180" target="_blank">LinkedIn</a>
+    </div>
+    <p class="font-sans text-xs uppercase tracking-[0.1em] text-slate-500">
+        © 2026 Deniz Altuner. Tasarım ve geliştirme tarafımca yapılmıştır.
+    </p>
+</div>
+</footer>
 
-  <!-- Contact Page -->
-  <div class="page" id="contact">
-    <section>
-      <h2 class="section-title">İletişim</h2>
-      <div class="contact-container">
-        <form class="contact-form" name="contact" data-netlify="true" onsubmit="handleSubmit(event)">
-          <input type="hidden" name="form-name" value="contact" />
-          <div class="form-group"><label for="name">Adınız</label><input id="name" name="name" type="text" required></div>
-          <div class="form-group"><label for="email">E-posta</label><input id="email" name="email" type="email" required></div>
-          <div class="form-group"><label for="subject">Konu</label><input id="subject" name="subject" type="text" required></div>
-          <div class="form-group"><label for="message">Mesajınız</label><textarea id="message" name="message" rows="5" required></textarea></div>
-          <button type="submit" class="btn btn-primary" style="width:100%">📧 Mesaj Gönder</button>
-          <p id="form-status" class="form-status" role="status" tabindex="-1"></p>
-        </form>
-        <div class="contact-links">
-          <a class="social-link" href="https://github.com/Denizaltnr" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub">
-            <svg aria-hidden="true" fill="currentColor" viewBox="0 0 24 24" width="24" height="24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-          </a>
-          <a class="social-link" href="https://www.linkedin.com/in/deniz-altuner-a58612180" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn">
-            <svg aria-hidden="true" fill="currentColor" viewBox="0 0 24 24" width="24" height="24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-          </a>
-          <a class="social-link" href="mailto:ben_deniz_melisa@outlook.com" title="E-posta" aria-label="E-posta">
-            <svg aria-hidden="true" fill="currentColor" viewBox="0 0 24 24" width="24" height="24"><path d="M12 12.713l-11.985-9.713h23.971l-11.986 9.713zm-5.425-1.822l-6.575-5.329v12.501l6.575-7.172zm10.85 0l6.575 7.172v-12.501l-6.575 5.329zm-1.557 1.261l-3.868 3.135-3.868-3.135-8.11 8.848h23.956l-8.11-8.848z"/></svg>
-          </a>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 Deniz Altuner. Tüm hakları saklıdır.</p>
-    <p style="margin-top:1rem;opacity:.7;">Sitenin tasarım ve kod aşaması tamamen bana aittir.</p>
-  </footer>
-
-  <main id="main"></main>
-
-  <script>
-    // Hash'e göre sayfa aktifliği
-    function setActivePageFromHash() {
-      const id = (location.hash || '#home').slice(1);
-      document.querySelectorAll('.page').forEach(p => p.classList.toggle('active', p.id === id));
-      document.querySelectorAll('.nav-link').forEach(link => {
-        const target = (link.getAttribute('href') || '').replace('#','');
-        const isActive = target === id;
-        link.classList.toggle('active', isActive);
-        if (isActive) link.setAttribute('aria-current', 'page'); else link.removeAttribute('aria-current');
-      });
-    }
-    window.addEventListener('hashchange', setActivePageFromHash);
-    document.addEventListener('DOMContentLoaded', function(){
-      setActivePageFromHash();
+<script>
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('mobile-menu').classList.add('hidden');
     });
+});
 
-    // Mobil menü toggle
-    (function(){
-      var btn = document.querySelector('.nav-toggle');
-      var links = document.getElementById('nav-links');
-      if(btn && links){
-        btn.addEventListener('click', function(){
-          var open = links.classList.toggle('open');
-          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-        });
-      }
-      var form = document.querySelector('form[data-netlify="true"]');
-      var status = document.getElementById('form-status');
-      if(form && status){
-        form.addEventListener('submit', function(){
-          setTimeout(function(){ status.textContent = 'Teşekkürler! Mesajınız alındı.'; status.focus(); }, 600);
-        });
-      }
-    })();
+// Mobile menu toggle
+document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+    document.getElementById('mobile-menu').classList.toggle('hidden');
+});
 
-    // Mailto fallback (Netlify yoksa)
-    function handleSubmit(event){
-      event.preventDefault();
-      const formData = new FormData(event.target);
-      const data = Object.fromEntries(formData);
-      const mailtoLink = 'mailto:ben_deniz_melisa@outlook.com?subject=' +
+// ===== THEME TOGGLE =====
+const themeToggle = document.getElementById('theme-toggle');
+const themeIcon = document.getElementById('theme-icon');
+const htmlEl = document.documentElement;
+
+// Load saved theme
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'light') {
+    htmlEl.classList.remove('dark');
+    themeIcon.textContent = 'dark_mode';
+} else {
+    htmlEl.classList.add('dark');
+    themeIcon.textContent = 'light_mode';
+}
+
+themeToggle.addEventListener('click', function() {
+    const isDark = htmlEl.classList.toggle('dark');
+    if (isDark) {
+        themeIcon.textContent = 'light_mode';
+        localStorage.setItem('theme', 'dark');
+    } else {
+        themeIcon.textContent = 'dark_mode';
+        localStorage.setItem('theme', 'light');
+    }
+});
+
+// Active nav highlight on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+        const top = section.offsetTop - 120;
+        if (scrollY >= top) current = section.getAttribute('id');
+    });
+    navLinks.forEach(link => {
+        link.classList.remove('text-indigo-300', 'border-b-2', 'border-cyan-400', 'pb-1');
+        link.classList.add('text-slate-400');
+        if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('text-indigo-300', 'border-b-2', 'border-cyan-400', 'pb-1');
+            link.classList.remove('text-slate-400');
+        }
+    });
+});
+
+// Fade-in animation on scroll
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Contact form handler
+function handleSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+    const mailtoLink = 'mailto:ben_deniz_melisa@outlook.com?subject=' +
         encodeURIComponent(data.subject) +
         '&body=' + encodeURIComponent('Ad: ' + data.name + '\nE-posta: ' + data.email + '\n\nMesaj:\n' + data.message);
-      window.location.href = mailtoLink;
-      event.target.reset();
-      alert('Mesajınız için teşekkürler! En kısa sürede size dönüş yapacağım.');
-    }
-  </script>
+    window.location.href = mailtoLink;
+    event.target.reset();
+}
+</script>
 </body>
 </html>
